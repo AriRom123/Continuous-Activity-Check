@@ -70,6 +70,15 @@ def data(type):
 
         return dff1, title
 
+    if type == 'video':
+        video_path = "/Path to your file/yourfile.mp4" ## Can also use avi files
+        mp4_data = MP4ToDff(video_path)
+        mp4_data.mp4_video_to_numpy_gray()
+
+        title = 'Uploaded video '
+
+        return mp4_data.dff , title
+
 
 
 class MatlabToDff:
