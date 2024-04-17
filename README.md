@@ -9,4 +9,4 @@ HOW TO USE:
 2. Make sure all imports are installed
 3. At the end of the code , one can choose data type from the options: 1 Gaussian , 2 Gaussians, Radial Wave , Plane wave and continuous propagation 
 (The project is not published yet, hence no Widefield CA imaging video can be supplied)
-4.
+4.One can analyze any mp4 / avi file by choose 'video' 
