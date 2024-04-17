@@ -9,4 +9,15 @@ HOW TO USE:
 2. Make sure all imports are installed
 3. At the end of the code , one can choose data type from the options: 1 Gaussian , 2 Gaussians, Radial Wave , Plane wave and continuous propagation 
 (The project is not published yet, hence no Widefield CA imaging video can be supplied)
-4.One can analyze any mp4 / avi file by choose 'video' 
+4. Choose algorithm parameters as explained in the code
+
+
+NOTE:
+- One can analyze any mp4 / avi file by choosing 'video' as file type and fill path file (In this version only 'square' NxN videos can be analyzed)
+- The Output contains for axis: Original video + velocity vectors
+                                Algorithm output before graph analysis
+                                Waveness map indicating the normalized waveness parameter in addition to average direction (indicated by colors according to the colormap)
+                                Distribution of waveness score in the map
+
+
+This is a 
