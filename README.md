@@ -20,4 +20,8 @@ NOTE:
                                 Distribution of waveness score in the map
 
 
-This is a 
+
+
+All rights reserved to Ariel Rom ,Evolutionary Neural Coding Lab & PB Lab
+Tel-Aviv university,
+Israel
