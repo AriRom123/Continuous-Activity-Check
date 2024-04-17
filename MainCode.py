@@ -48,7 +48,6 @@ def data(type):
     if type == '2 gaussian':
         dff1 , params = create_gaussians(N=50, M=50, frames=50, num_gaus=2, x0=20, y0=20, sd0=5, t0_0=20, sdT0=5 \
                                                                 , x1=20 + 7, y1=20+7,sd1=5, t0_1=20 + 10 ,sdT1=5)
-
         title = r'2 Gaussians ' # $\Delta_X$=$\Delta_T$± 2$\sigma$ , $\sigma_x$ =5'
 
         return dff1 , title
@@ -69,57 +68,7 @@ def data(type):
         dff1 = create_patterns(N=50, M=50, frames=100, pattern='cont', x0=25, y0=-30, sd0=7, u=0, v=1, rad_spd=0.3,rad_width=4)
         title = 'cont'
 
-
         return dff1, title
-        #dff1= create_pattenrs(N=60, M=60, frames=70, pattern='cont', x0=35, y0=-20, sd0=8, u=0, v=1,rad_spd=0.3, rad_width=4)
-
-    if type == 'cortex':
-        x = scipy.io.loadmat("/Users/arielrom/Desktop/תואר שני 2/Thesis/AnalyzedData/Early Tryings/spont_4000f_MMStack_Pos0.mat")
-        #x = scipy.io.loadmat("/Users/arielrom/Desktop/תואר שני 2/Thesis/AnalyzedData/Early Tryings/spont_higherled_4000f_MMStack_Pos0_1.mat")
-        mat_data = MatlabToDff(x)
-        mat_data.enhance()
-        dff1 = mat_data.dff[:,:,426:511] ##(426,511) ##(0,450) , (200,400)
-        title = 'Cortex'
-
-        return decrease_frame_rate(dff1, 25, 10) , title
-
-    if type == 'retina':
-        video_path = "/Users/arielrom/Desktop/תואר שני 2/Thesis/AnalyzedData/TifConvert/elife-81983-video1.mp4"
-        mp4_data = MP4ToDff(video_path)
-        mp4_data.mp4_video_to_numpy_gray()
-
-        mp4_data.dff = mp4_data.dff[:,:,1100:1350] #1100,1400   ,  530,710
-        mp4_data.dff = normalize_data(mp4_data.dff)
-        title = 'Retina'
-
-        return mp4_data.dff , title
-
-    if type == 'spiral':
-        video_path = "/Users/arielrom/Desktop/תואר שני 2/Thesis/AnalyzedData/spiral.avi"
-        mp4_data = MP4ToDff(video_path)
-        mp4_data.mp4_video_to_numpy_gray()
-
-
-        mp4_data.dff = mp4_data.dff[:,:,1200:1380] #1100,1400   ,  530,710
-        mp4_data.dff = normalize_data(mp4_data.dff)
-        title = 'Spiral Wave'
-        return mp4_data.dff , title
-
-    if type =='SD':
-        video_path = "/Users/arielrom/Desktop/תואר שני 2/Thesis/AnalyzedData/FullCode/SD_WAVE.avi"
-        mp4_data = MP4ToDff(video_path)
-
-        mp4_data.mp4_video_to_numpy_gray()
-        mp4_data.dff = mp4_data.dff[100:800,100:800,0:600]
-        mp4_data.normalize_data()
-
-        dff1 = mp4_data.dff
-        title = 'Spreading Depression'
-
-        return apply_lowpass_filter(dff1, 30, 10) , title
-
-
-
 
 
 
@@ -609,11 +558,6 @@ def check_div_theo(vector_field, epsilon=epsilon):
 dff1 ,title = data('2 gaussian')
 
 data = PreDataProcessing(dff1)
-#data.resize(100,100)
-
-###RETINA####
-#data.resize(200,200)
-#data.dff = data.dff[70:170,25:125,:]
 
 data = FlowAnalyze(data)
 data.horn_schunck_flow(alpha=alpha, num_iter=iterations )
@@ -622,8 +566,5 @@ data.calculate_map(eps=epsilon)
 
 display=Display(data)
 
-
-#display.plot_data_div()
 display.spatial_connections_video(space = 1 , scale = 2 )
-#display.curl_divergence(space = 1 , scale = 10 )
 
